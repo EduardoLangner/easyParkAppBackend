@@ -15,11 +15,14 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
+    "pg": "^8.11.0",
     "postgres": "^3.3.4",
+    "sequelize": "^6.31.1",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
     "eslint": "^8.40.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "sequelize-cli": "^6.6.0"
   }
 }

@@ -1,7 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const app = express()   
+const app = express() 
+
+require('./database/index')
 
 app.use((req, res, next) => {
     app.use(cors())
