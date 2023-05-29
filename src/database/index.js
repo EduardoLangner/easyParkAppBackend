@@ -1,11 +1,13 @@
 const Sequelize = require('sequelize')
 const dbConfig = require('../config/database')
 
-const UserModel = require('../models/UserModel')
+const User = require('../models/User')
+const CreditCard = require('../models/CreditCard')
 
 const connection = new Sequelize(dbConfig)
 
-UserModel.init(connection)
+User.init(connection)
+CreditCard.init(connection)
 
 console.log('\nDatabase connection successful!')
 
