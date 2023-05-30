@@ -5,7 +5,8 @@ const app = express()
 
 const indexRouter = require('./routes/indexRouter')
 const userRouter = require('./routes/userRouter')
-const LoginRouter = require('./routes/loginRouter')
+const loginRouter = require('./routes/loginRouter')
+const creditCardRouter = require('./routes/creditCardRouter')
 
 require('./database/index')
 
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use(indexRouter)
 app.use(userRouter)
-app.use(LoginRouter)
+app.use(loginRouter)
+app.use(creditCardRouter)
 
 module.exports = app    

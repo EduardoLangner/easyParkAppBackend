@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    return queryInterface.createTable('credit_card', {
+    return queryInterface.createTable('credit_cards', {
 
       id: {
         type: Sequelize.INTEGER,
@@ -20,7 +20,6 @@ module.exports = {
       number: {
         type: Sequelize.STRING, 
         allowNull: false,
-        unique: true,
       }, 
 
       date: {
@@ -29,7 +28,7 @@ module.exports = {
       },
 
       cvv: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
 

@@ -7,7 +7,7 @@ class CreditCard extends Model {
             name: DataTypes.STRING,
             number: DataTypes.STRING,
             date: DataTypes.STRING,
-            cvv: DataTypes.STRING,
+            cvv: DataTypes.INTEGER,
             user_id: DataTypes.INTEGER,
         }, {
             sequelize

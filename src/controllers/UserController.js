@@ -27,16 +27,9 @@ module.exports = {
                 token: token
             })
         } catch (error) {
-            if (error.name === 'SequelizeUniqueConstraintError' && error.fields.email) {
-                return res.status(400).json({ error: 'Email already exists' })
-            } else if (error.name === 'SequelizeUniqueConstraintError' && error.fields.cpf) {
-                return res.status(400).json({ error: 'CPF already exists' })
-            } else {
-                return res.status(400).json({ error: 'Error creating user: ' + error })
-            }
+            return res.status(400).json({ error: 'Error creating user: ' + error })
         }
     },
-      
 
     async getUsers(req, res){
         try{
