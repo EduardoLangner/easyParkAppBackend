@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('park_spaces', {
 
       id: {
         type: Sequelize.INTEGER,
@@ -12,38 +12,31 @@ module.exports = {
         allowNull: false,
       },
 
-      name: {
+      token: {
         type: Sequelize.STRING, 
         allowNull: false,
+        unique: true,
       }, 
 
-      cpf: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-
-      account_balance: {
-        type: Sequelize.FLOAT,
+      status: {
+        type: Sequelize.ENUM('free', 'occupied'),
         allowNull: true,
-        defaultValue: 0,
+        defaultValue: 'free',
       },
 
-      is_admin: {
-        type: Sequelize.BOOLEAN,
+      latitude: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: false,
+      },
+
+      longitude: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+
+      type: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
 
       created_at: {

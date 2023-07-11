@@ -6,7 +6,10 @@ const app = express()
 const indexRouter = require('./routes/indexRouter')
 const userRouter = require('./routes/userRouter')
 const loginRouter = require('./routes/loginRouter')
-const creditCardRouter = require('./routes/creditCardRouter')
+const vehicleRouter = require('./routes/vehicleRouter')
+const parkSpaceRouter = require('./routes/parkSpaceRouter')
+// const creditCardRouter = require('./routes/creditCardRouter')
+
 
 require('./database/index')
 
@@ -20,6 +23,8 @@ app.use(morgan('dev'))
 app.use(indexRouter)
 app.use(userRouter)
 app.use(loginRouter)
-app.use(creditCardRouter)
+app.use(vehicleRouter)
+app.use(parkSpaceRouter)
+// app.use(creditCardRouter)
 
 module.exports = app    

@@ -8,6 +8,7 @@ class User extends Model {
             cpf: DataTypes.STRING,
             email: DataTypes.STRING,
             password: DataTypes.STRING,
+            account_balance: DataTypes.FLOAT
         }, {
             sequelize
         })

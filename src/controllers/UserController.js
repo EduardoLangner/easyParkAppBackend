@@ -6,7 +6,7 @@ module.exports = {
 
     async createUser(req, res) {
         try {
-            const { name, cpf, email, password } = req.body
+            const { name, cpf, email, password, account_balance } = req.body
             const hash = bcrypt.hashSync(password, 10)
 
             let emailExists = await User.findOne({ where: { email: email } })
@@ -17,7 +17,7 @@ module.exports = {
                 return res.status(400).json({ error: message })
             }
 
-            const user = await User.create({ name, cpf, email, password: hash })
+            const user = await User.create({ name, cpf, email, password: hash, account_balance })
             
             const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
 
