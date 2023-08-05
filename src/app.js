@@ -15,6 +15,10 @@ require('./database/index')
 
 app.use((req, res, next) => {
     app.use(cors())
+    res.header('Access-Control-Allow-Origin', 'http://192.168.113.125:19000')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+    console.log('Request: ', req.method, req.url)
     next()
 })
 
