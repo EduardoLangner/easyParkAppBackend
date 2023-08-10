@@ -14,7 +14,7 @@ module.exports = {
                 return res.status(400).json({error: 'Email or password incorrect'})
             }
             const checkPassword = bcrypt.compareSync(password, user.password)
-            const token = jwt.sign({id: user.id}, process.env.JWT_SECRET)
+            const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '60s'})
             if(!checkPassword){
                 return res.status(400).json({error: 'Email or password incorrect'})
             }else{
@@ -35,7 +35,7 @@ module.exports = {
             const {token} = req.body
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
             const user = await User.findOne({where: {id: decoded.id}})
-            const newToken = jwt.sign({id: user.id}, process.env.JWT_SECRET)
+            const newToken = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '60s'})
             return res.status(200).json({
                 message: 'Token refreshed successfully',
                 user,

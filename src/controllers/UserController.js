@@ -8,18 +8,16 @@ module.exports = {
         try {
             const { name, cpf, email, password, account_balance } = req.body
             const hash = bcrypt.hashSync(password, 10)
-
             let emailExists = await User.findOne({ where: { email: email } })
             let cpfExists = await User.findOne({ where: { cpf: cpf } })
             let message = emailExists ? 'Email already exists' : 'CPF already exists'
-
+            
             if(emailExists || cpfExists){
                 return res.status(400).json({ error: message })
             }
 
             const user = await User.create({ name, cpf, email, password: hash, account_balance })
-            
-            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: '60s'})
 
             return res.status(200).json({
                 message: 'User created successfully',

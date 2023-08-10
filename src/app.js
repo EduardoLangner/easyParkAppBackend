@@ -10,7 +10,6 @@ const vehicleRouter = require('./routes/vehicleRouter')
 const parkSpaceRouter = require('./routes/parkSpaceRouter')
 // const creditCardRouter = require('./routes/creditCardRouter')
 
-
 require('./database/index')
 
 app.use((req, res, next) => {
