@@ -17,12 +17,16 @@ module.exports = {
             }
 
             const user = await User.create({ name, cpf, email, password: hash, account_balance })
-            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: '60s'})
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: '5min'})
+            const refreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '5min'})
+
+            await user.update({refresh_token: refreshToken})
 
             return res.status(200).json({
                 message: 'User created successfully',
                 user,
-                token: token
+                token: token,
+                refreshToken: refreshToken
             })
         } catch (error) {
             return res.status(400).json({ error: 'Error creating user: ' + error })
@@ -30,43 +34,63 @@ module.exports = {
     },
 
     async getUsers(req, res){
-        try{
-            const users = await User.findAll()
-            return res.status(200).json(users)
-        }catch(error){
-            return res.status(400).json({error: 'Error to get users: ' + error})
+        const token = req.headers.authorization.split(' ')[1]
+        if (token) {
+            try{
+                const users = await User.findAll()
+                return res.status(200).json(users)
+            }catch(error){
+                return res.status(400).json({error: 'Error to get users: ' + error})
+            }
+        } else {
+            return res.status(401).json({error: 'Invalid Token'})
         }
     },
 
     async getUserById(req, res){
-        const {id} = req.params
-        try{
-            const user = await User.findByPk(id)
-            return res.status(200).json(user)
-        }catch(error){
-            return res.status(400).json({error: 'Error to get user with id ' + id + ': ' + error})
+        const token = req.headers.authorization.split(' ')[1]
+        if (token) {
+            const {id} = req.params
+            try{
+                const user = await User.findByPk(id)
+                return res.status(200).json(user)
+            }catch(error){
+                return res.status(400).json({error: 'Error to get user with id ' + id + ': ' + error})
+            }
+        } else {
+            return res.status(401).json({error: 'Invalid Token'})
         }
     },
 
     async deleteUserById(req, res){
+        const token = req.headers.authorization.split(' ')[1]
         const {id} = req.params
-        try{
-            const user = await User.findByPk(id)
-            await user.destroy()
-            return res.status(200).json({message: 'User ' + id + ' deleted successfully'})
-        }catch(error){
-            return res.status(400).json({error: 'Error to delete user with id ' + id + ': ' + error})
+        if (token) {
+            try{
+                const user = await User.findByPk(id)
+                await user.destroy()
+                return res.status(200).json({message: 'User ' + id + ' deleted successfully'})
+            }catch(error){
+                return res.status(400).json({error: 'Error to delete user with id ' + id + ': ' + error})
+            }
+        } else {
+            return res.status(401).json({error: 'Invalid Token'})
         }
     },  
 
     async updateUserById(req, res){
+        const token = req.headers.authorization.split(' ')[1]
         const {id} = req.params
-        try{
-            const user = await User.findByPk(id)
-            await user.update(req.body)
-            return res.status(200).json({message: 'User ' + id + ' updated successfully'})
-        }catch(error){
-            return res.status(400).json({error: 'Error to update user with id ' + id + ': ' + error})
+        if (token) {
+            try{
+                const user = await User.findByPk(id)
+                await user.update(req.body)
+                return res.status(200).json({message: 'User ' + id + ' updated successfully'})
+            }catch(error){
+                return res.status(400).json({error: 'Error to update user with id ' + id + ': ' + error})
+            }
+        } else {
+            return res.status(401).json({error: 'Invalid Token'})
         }
     }
 }
