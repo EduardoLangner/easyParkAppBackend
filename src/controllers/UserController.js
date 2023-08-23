@@ -17,8 +17,8 @@ module.exports = {
             }
 
             const user = await User.create({ name, cpf, email, password: hash, account_balance })
-            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: '5min'})
-            const refreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '5min'})
+            const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: '1d'})
+            const refreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '1d'})
 
             await user.update({refresh_token: refreshToken})
 

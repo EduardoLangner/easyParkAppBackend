@@ -14,8 +14,8 @@ module.exports = {
                 return res.status(400).json({error: 'Email or password incorrect'})
             }
             const checkPassword = bcrypt.compareSync(password, user.password)
-            const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '5min'})
-            const refreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '5min'})
+            const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '1d'})
+            const refreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '1d'})
             await user.update({refresh_token: refreshToken})
             if(!checkPassword){
                 return res.status(400).json({error: 'Email or password incorrect'})
@@ -53,9 +53,9 @@ module.exports = {
                 return res.status(400).json({ error: 'Invalid refresh token' });
             }
 
-            const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '5min'})
+            const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: '1d'})
 
-            const newRefreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '5min'})
+            const newRefreshToken = jwt.sign({refresKey: process.env.JWT_SECRET_REFRESH}, process.env.JWT_SECRET, {expiresIn: '1d'})
 
             await user.update({refresh_token: newRefreshToken})
             
