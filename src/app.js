@@ -8,7 +8,7 @@ const userRouter = require('./routes/userRouter')
 const authenticationRouter = require('./routes/authenticationRouter')
 const vehicleRouter = require('./routes/vehicleRouter')
 const parkSpaceRouter = require('./routes/parkSpaceRouter')
-// const creditCardRouter = require('./routes/creditCardRouter')
+const creditCardRouter = require('./routes/creditCardRouter')
 
 require('./database/index')
 
@@ -28,6 +28,6 @@ app.use(userRouter)
 app.use(authenticationRouter)
 app.use(vehicleRouter)
 app.use(parkSpaceRouter)
-// app.use(creditCardRouter)
+app.use(creditCardRouter)
 
 module.exports = app    
