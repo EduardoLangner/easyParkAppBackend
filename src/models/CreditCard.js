@@ -4,11 +4,10 @@ class CreditCard extends Model {
 
     static init(sequelize) {
         super.init({
-            name: DataTypes.STRING,
-            number: DataTypes.STRING,
-            date: DataTypes.STRING,
-            cvv: DataTypes.STRING,
             user_id: DataTypes.INTEGER,
+            asaas_creditcard_id: DataTypes.STRING,
+            credit_card_number: DataTypes.STRING,
+            credit_card_name: DataTypes.STRING,
         }, {
             sequelize
         })

@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    return queryInterface.createTable('credit_cards', {
+    return queryInterface.createTable('users', {
 
       id: {
         type: Sequelize.INTEGER,
@@ -17,27 +17,43 @@ module.exports = {
         allowNull: false,
       }, 
 
-      number: {
-        type: Sequelize.STRING, 
+      cpf: {
+        type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
+      },
+
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+
+      account_balance: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+        defaultValue: 0,
+      },
+
+      is_admin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+
+      refresh_token: {
+        type: Sequelize.STRING,
+        allowNull: true,
       }, 
 
-      date: {
+      asaas_id : {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-
-      cvv: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {model: 'users', key: 'id'},
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        allowNull: true,
       },
 
       created_at: {

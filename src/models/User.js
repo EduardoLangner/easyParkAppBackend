@@ -9,11 +9,12 @@ class User extends Model {
             email: DataTypes.STRING,
             password: DataTypes.STRING,
             account_balance: DataTypes.FLOAT,
-            refresh_token: DataTypes.STRING
+            refresh_token: DataTypes.STRING,
+            asaas_id: DataTypes.STRING,
         }, {
             sequelize
         })
     }
 }
 
-module.exports = User
+module.exports = User       
