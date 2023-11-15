@@ -34,6 +34,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+
+      credit_card_token: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       
       created_at: {
         type: Sequelize.DATE,

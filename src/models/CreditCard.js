@@ -8,6 +8,7 @@ class CreditCard extends Model {
             asaas_creditcard_id: DataTypes.STRING,
             credit_card_number: DataTypes.STRING,
             credit_card_name: DataTypes.STRING,
+            credit_card_token: DataTypes.STRING,
         }, {
             sequelize
         })

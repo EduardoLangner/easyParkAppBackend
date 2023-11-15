@@ -5,9 +5,10 @@ module.exports = {
     async createCreditCard(req, res) {
         const token = req.headers.authorization.split(' ')[1]
         if (token) {
+            console.log(req.body)
             try{
-                const {asaas_creditcard_id, credit_card_number, credit_card_name, user_id} = req.body
-                const creditCard = await CreditCard.create({asaas_creditcard_id, credit_card_number, credit_card_name, user_id})
+                const {asaas_creditcard_id, credit_card_number, credit_card_name, credit_card_token, user_id} = req.body
+                const creditCard = await CreditCard.create({asaas_creditcard_id, credit_card_number, credit_card_name, credit_card_token, user_id})
                 return res.status(200).json({
                     message: 'Credit card created successfully',
                     creditCard
