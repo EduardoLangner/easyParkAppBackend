@@ -43,5 +43,18 @@ module.exports = {
         }catch(error){
             return res.status(400).json({error: 'Error to delete park space with id ' + id + ': ' + error})
         }
+    },
+
+    async updateParkSpaceById(req, res){
+        const {id} = req.params
+        try{
+            const parkSpace = await ParkSpace.findByPk(id)
+            await parkSpace.update(req.body)
+            return res.status(200).json({message: 'Park space ' + id + ' updated successfully'})
+        }catch(error){
+            return res.status(400).json({error: 'Error to update park space with id ' + id + ': ' + error})
+        }
     }
+
+
 }
