@@ -1,6 +1,8 @@
-# SEE 
+# Easy Park
+O Aplicativo Easy Parking surgiu como uma idéia para facilitar a rotina de estacionamento de veículos, com uma feature única de visualização de vagas em tempo real.
 
-O Aplicativo Easy Parking surgiu como uma idéia para facilitar a rotina de estacionamento de veículos, com uma feature única de visualização de dados em tempo real.
+## Conexão com banco de dados utilizando variáveis de ambiente
+## Rotas criadas utilizando Express para requisições HTTP
 
 # Requisitos para rodar a aplicação
 1. Nodejs.
